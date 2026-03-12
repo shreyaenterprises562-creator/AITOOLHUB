@@ -1,6 +1,5 @@
 {
-"routes": [
-{ "src": "/sitemap.xml", "dest": "/api/sitemap" },
-{ "src": "/(.*)", "dest": "/" }
-]
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }
