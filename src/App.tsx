@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import ScrollToTop from "./components/ScrollToTop";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -15,8 +16,13 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
+
+        {/* FIX: Scroll position reset on route change */}
+        <ScrollToTop />
+
         <div className="flex min-h-screen flex-col font-sans text-slate-900 antialiased">
           <Navbar />
+
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
@@ -29,8 +35,10 @@ function App() {
               <Route path="/:keyword" element={<SEOPage />} />
             </Routes>
           </main>
+
           <Footer />
         </div>
+
       </Router>
     </HelmetProvider>
   );
