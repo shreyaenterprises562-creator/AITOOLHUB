@@ -1,18 +1,18 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "./components/ScrollToTop";
 
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
-import Home from './pages/Home';
-import ToolPage from './pages/ToolPage';
-import CategoryPage from './pages/CategoryPage';
-import BlogPage from './pages/BlogPage';
-import BlogPostPage from './pages/BlogPostPage';
-import SubmitTool from './pages/SubmitTool';
-import FoundersPage from './pages/FoundersPage';
-import SEOPage from './pages/SEOPage';
+import Home from "./pages/Home";
+import ToolPage from "./pages/ToolPage";
+import CategoryPage from "./pages/CategoryPage";
+import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
+import SubmitTool from "./pages/SubmitTool";
+import FoundersPage from "./pages/FoundersPage";
+import SEOPage from "./pages/SEOPage";
 
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
@@ -23,11 +23,9 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
-
         <ScrollToTop />
 
         <div className="flex min-h-screen flex-col font-sans text-slate-900 antialiased">
-
           <Navbar />
 
           <main className="flex-grow">
@@ -40,8 +38,10 @@ function App() {
               <Route path="/submit-tool" element={<SubmitTool />} />
               <Route path="/founders" element={<FoundersPage />} />
 
-              {/* Tool & category */}
+              {/* Tool pages */}
               <Route path="/tool/:slug" element={<ToolPage />} />
+
+              {/* Category pages */}
               <Route path="/category/:category" element={<CategoryPage />} />
 
               {/* Legal pages */}
@@ -50,16 +50,14 @@ function App() {
               <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/terms" element={<TermsPage />} />
 
-              {/* SEO dynamic pages (always last) */}
-              <Route path="/:keyword" element={<SEOPage />} />
+              {/* SEO pages */}
+              <Route path="/best/:keyword" element={<SEOPage />} />
 
             </Routes>
           </main>
 
           <Footer />
-
         </div>
-
       </Router>
     </HelmetProvider>
   );
