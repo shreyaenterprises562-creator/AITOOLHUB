@@ -1,22 +1,74 @@
-import { Search as SearchIcon } from 'lucide-react';
+import { useState } from "react"
+import { Search } from "lucide-react"
+import { AI_TOOLS } from "../data"
 
-interface SearchBarProps {
-  value: string;
-  onChange: (value: string) => void;
-  placeholder?: string;
+export default function SearchBar({ value, onChange }: any) {
+
+const [suggestions, setSuggestions] = useState<any[]>([])
+
+function handleChange(e: any) {
+
+const query = e.target.value
+onChange(query)
+
+if(query.length === 0){
+setSuggestions([])
+return
 }
 
-export default function SearchBar({ value, onChange, placeholder }: SearchBarProps) {
-  return (
-    <div className="relative flex items-center">
-      <SearchIcon className="absolute left-4 text-slate-400" size={20} />
-      <input
-        type="text"
-        placeholder={placeholder || "Search 100+ AI tools..."}
-        className="h-14 w-full rounded-2xl border border-slate-200 bg-white pl-12 pr-4 text-slate-900 shadow-sm outline-none transition-all focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-      />
-    </div>
-  );
+const results = AI_TOOLS.filter(tool =>
+tool.name.toLowerCase().includes(query.toLowerCase())
+).slice(0,5)
+
+setSuggestions(results)
+
+}
+
+return (
+
+<div className="relative">
+
+<div className="flex items-center rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+
+<Search size={20} className="text-slate-400 mr-2"/>
+
+<input
+type="text"
+value={value}
+onChange={handleChange}
+placeholder="Search AI tools..."
+className="w-full outline-none"
+/>
+
+</div>
+
+{suggestions.length > 0 && (
+
+<div className="absolute z-50 mt-2 w-full rounded-xl border border-slate-200 bg-white shadow-lg">
+
+{suggestions.map(tool => (
+
+<div
+key={tool.name}
+className="cursor-pointer px-4 py-3 hover:bg-slate-100"
+onClick={()=>{
+onChange(tool.name)
+setSuggestions([])
+}}
+>
+
+{tool.name}
+
+</div>
+
+))}
+
+</div>
+
+)}
+
+</div>
+
+)
+
 }
