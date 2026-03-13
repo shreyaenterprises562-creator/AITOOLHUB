@@ -85,7 +85,7 @@ export default function Home() {
         <title>AI Tools Hub | Discover the Best AI Tools in 2026</title>
         <meta
           name="description"
-          content="Discover the best 100+ AI tools for writing, coding, marketing, design, and productivity. The ultimate AI directory for 2026."
+          content="Discover the best 100+ AI tools for writing, coding, marketing, design, and productivity."
         />
       </Helmet>
 
@@ -108,6 +108,7 @@ export default function Home() {
             </p>
           </motion.div>
 
+          {/* SEARCH */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -116,6 +117,14 @@ export default function Home() {
           >
             <SearchBar value={searchQuery} onChange={setSearchQuery} />
           </motion.div>
+
+          {/* ⭐ CATEGORY FILTER MOVED HERE */}
+          <div className="mt-6 flex justify-center">
+            <CategoryFilter
+              selected={selectedCategory}
+              onSelect={setSelectedCategory}
+            />
+          </div>
         </div>
       </section>
 
@@ -169,8 +178,8 @@ export default function Home() {
               <ToolGrid tools={topRatedTools} />
             </section>
 
-            {/* ⭐ FIXED CATEGORY SECTION */}
-            <section id="categories" className="mb-16 scroll-mt-24">
+            {/* Popular Categories */}
+            <section id="categories" className="mb-16">
               <h2 className="text-2xl font-bold text-slate-900 mb-8">
                 Popular Categories
               </h2>
@@ -192,7 +201,7 @@ export default function Home() {
           </>
         )}
 
-        {/* Directory */}
+        {/* All Tools */}
         <section id="directory" className="pt-8">
           <div className="flex items-center gap-2 text-slate-900 font-bold text-2xl mb-8">
             <LayoutGrid size={24} className="text-indigo-600" />
@@ -202,11 +211,6 @@ export default function Home() {
                 : "All AI Tools"}
             </h2>
           </div>
-
-          <CategoryFilter
-            selected={selectedCategory}
-            onSelect={setSelectedCategory}
-          />
 
           <ToolGrid
             tools={filteredTools}
