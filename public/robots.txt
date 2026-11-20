@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aitoolhub-five.vercel.app/sitemap.xml
