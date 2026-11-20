@@ -1,365 +1,165 @@
-export type AICategory =
-  | "chat"
-  | "writing"
-  | "image"
-  | "video"
-  | "audio"
-  | "design"
-  | "developer"
-  | "productivity"
-  | "marketing"
-  | "automation"
-  | "data"
-  | "research"
-  | "search";
-
 export interface AITool {
   name: string;
-  slug: string;
-  category: AICategory;
+  category: string;
   description: string;
   url: string;
-  pricing?: "Free" | "Freemium" | "Paid";
-  logo?: string;
-  tags?: string[];
-  featured?: boolean;
-  trending?: boolean;
-  rating?: number;
-  addedDate?: string;
-}
-
-export interface BlogPost {
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: string;
-  date: string;
-  author: string;
-  category: string;
-  image?: string;
-  tags?: string[];
 }
 
 export const AI_TOOLS: AITool[] = [
-
-  {
-    name: "ChatGPT",
-    slug: "chatgpt",
-    category: "chat",
-    description: "Advanced conversational AI assistant for writing, coding, research, and productivity.",
-    url: "https://chat.openai.com",
-    pricing: "Freemium",
-    featured: true,
-    trending: true,
-    rating: 4.9,
-    tags: ["OpenAI", "Assistant", "LLM"]
-  },
-
-  {
-    name: "Claude",
-    slug: "claude",
-    category: "chat",
-    description: "Next-generation AI assistant by Anthropic designed for safe and helpful conversations.",
-    url: "https://claude.ai",
-    pricing: "Freemium",
-    rating: 4.8
-  },
-
-  {
-    name: "Gemini",
-    slug: "gemini",
-    category: "chat",
-    description: "Google's multimodal AI assistant integrated across Google services.",
-    url: "https://gemini.google.com",
-    pricing: "Freemium",
-    trending: true,
-    rating: 4.7
-  },
-
-  {
-    name: "Perplexity",
-    slug: "perplexity",
-    category: "search",
-    description: "AI powered answer engine and search assistant.",
-    url: "https://perplexity.ai",
-    trending: true,
-    rating: 4.8
-  },
-
-  {
-    name: "Copy AI",
-    slug: "copy-ai",
-    category: "writing",
-    description: "AI writing tool for blogs, marketing copy, and product descriptions.",
-    url: "https://www.copy.ai",
-    pricing: "Freemium",
-    rating: 4.6
-  },
-
-  {
-    name: "Jasper",
-    slug: "jasper",
-    category: "writing",
-    description: "AI content platform for marketers and content teams.",
-    url: "https://jasper.ai",
-    pricing: "Paid",
-    rating: 4.7
-  },
-
-  {
-    name: "Writesonic",
-    slug: "writesonic",
-    category: "writing",
-    description: "AI writing assistant for blogs, ads, and SEO content.",
-    url: "https://writesonic.com",
-    pricing: "Freemium"
-  },
-
-  {
-    name: "Grammarly",
-    slug: "grammarly",
-    category: "writing",
-    description: "AI writing assistant for grammar, tone, and clarity.",
-    url: "https://grammarly.com",
-    pricing: "Freemium"
-  },
-
-  {
-    name: "Midjourney",
-    slug: "midjourney",
-    category: "image",
-    description: "AI image generation platform known for artistic visuals.",
-    url: "https://midjourney.com",
-    pricing: "Paid",
-    featured: true,
-    rating: 4.8
-  },
-
-  {
-    name: "DALL·E",
-    slug: "dall-e",
-    category: "image",
-    description: "OpenAI model that creates realistic images from text prompts.",
-    url: "https://openai.com/dall-e"
-  },
-
-  {
-    name: "Leonardo AI",
-    slug: "leonardo-ai",
-    category: "image",
-    description: "Generative AI platform for game assets and design.",
-    url: "https://leonardo.ai"
-  },
-
-  {
-    name: "Ideogram",
-    slug: "ideogram",
-    category: "image",
-    description: "AI image generator specialized in text rendering.",
-    url: "https://ideogram.ai"
-  },
-
-  {
-    name: "Runway",
-    slug: "runway",
-    category: "video",
-    description: "AI video editing and generation platform.",
-    url: "https://runwayml.com"
-  },
-
-  {
-    name: "Synthesia",
-    slug: "synthesia",
-    category: "video",
-    description: "Create professional AI avatar videos for presentations and marketing.",
-    url: "https://synthesia.io"
-  },
-
-  {
-    name: "Pika Labs",
-    slug: "pika-labs",
-    category: "video",
-    description: "Text to video AI generation tool.",
-    url: "https://pika.art"
-  },
-
-  {
-    name: "CapCut AI",
-    slug: "capcut-ai",
-    category: "video",
-    description: "AI powered video editing tools for creators.",
-    url: "https://capcut.com"
-  },
-
-  {
-    name: "ElevenLabs",
-    slug: "elevenlabs",
-    category: "audio",
-    description: "Realistic AI voice generation and voice cloning platform.",
-    url: "https://elevenlabs.io",
-    trending: true,
-    rating: 4.9
-  },
-
-  {
-    name: "Murf AI",
-    slug: "murf-ai",
-    category: "audio",
-    description: "AI voice generator for narration and presentations.",
-    url: "https://murf.ai"
-  },
-
-  {
-    name: "Suno",
-    slug: "suno-ai",
-    category: "audio",
-    description: "AI music generator that creates complete songs.",
-    url: "https://suno.com"
-  },
-
-  {
-    name: "Canva AI",
-    slug: "canva-ai",
-    category: "design",
-    description: "AI powered design tools for graphics, presentations, and social media.",
-    url: "https://canva.com"
-  },
-
-  {
-    name: "Adobe Firefly",
-    slug: "adobe-firefly",
-    category: "design",
-    description: "Adobe's generative AI for images and design.",
-    url: "https://adobe.com/firefly"
-  },
-
-  {
-    name: "Looka",
-    slug: "looka",
-    category: "design",
-    description: "AI logo generator and brand builder.",
-    url: "https://looka.com"
-  },
-
-  {
-    name: "Framer AI",
-    slug: "framer-ai",
-    category: "design",
-    description: "AI website builder for modern landing pages.",
-    url: "https://framer.com"
-  },
-
-  {
-    name: "GitHub Copilot",
-    slug: "github-copilot",
-    category: "developer",
-    description: "AI coding assistant for developers.",
-    url: "https://github.com/features/copilot",
-    pricing: "Paid",
-    featured: true
-  },
-
-  {
-    name: "Cursor",
-    slug: "cursor",
-    category: "developer",
-    description: "AI powered code editor designed for faster development.",
-    url: "https://cursor.sh",
-    trending: true
-  },
-
-  {
-    name: "Codeium",
-    slug: "codeium",
-    category: "developer",
-    description: "Free AI coding assistant for developers.",
-    url: "https://codeium.com"
-  },
-
-  {
-    name: "Tabnine",
-    slug: "tabnine",
-    category: "developer",
-    description: "AI code completion tool for multiple languages.",
-    url: "https://tabnine.com"
-  },
-
-  {
-    name: "Notion AI",
-    slug: "notion-ai",
-    category: "productivity",
-    description: "AI writing and productivity assistant integrated into Notion.",
-    url: "https://notion.so"
-  },
-
-  {
-    name: "Otter AI",
-    slug: "otter-ai",
-    category: "productivity",
-    description: "AI meeting transcription and note taking tool.",
-    url: "https://otter.ai"
-  },
-
-  {
-    name: "Tome",
-    slug: "tome",
-    category: "productivity",
-    description: "AI storytelling and presentation platform.",
-    url: "https://tome.app"
-  },
-
-  {
-    name: "Zapier AI",
-    slug: "zapier-ai",
-    category: "automation",
-    description: "AI powered workflow automation platform.",
-    url: "https://zapier.com"
-  },
-
-  {
-    name: "Make",
-    slug: "make",
-    category: "automation",
-    description: "Visual automation platform for building workflows.",
-    url: "https://make.com"
-  },
-
-  {
-    name: "Browse AI",
-    slug: "browse-ai",
-    category: "automation",
-    description: "AI web scraping and monitoring automation tool.",
-    url: "https://browse.ai"
-  }
-
-];
-
-export const BLOG_POSTS: BlogPost[] = [
-  {
-    title: "Best AI Tools for Students in 2026",
-    slug: "best-ai-tools-for-students",
-    excerpt: "Discover powerful AI tools that help students research, write, and learn faster.",
-    content: "Full content here...",
-    date: "2026-03-10",
-    author: "AI Hub Team",
-    category: "Education"
-  },
-  {
-    title: "How to Automate Your YouTube Workflow with AI",
-    slug: "youtube-automation-with-ai",
-    excerpt: "Learn how AI tools can automate script writing, video editing, and thumbnails.",
-    content: "Full content here...",
-    date: "2026-03-05",
-    author: "Content Expert",
-    category: "Video"
-  },
-  {
-    title: "Top Free AI Tools for Content Creators",
-    slug: "free-ai-tools-for-creators",
-    excerpt: "The best free AI tools for creators, bloggers, and marketers.",
-    content: "Full content here...",
-    date: "2026-02-28",
-    author: "Marketing Pro",
-    category: "Marketing"
-  }
+  { name: "ChatGPT", category: "Chatbots", description: "Advanced conversational AI by OpenAI", url: "https://chat.openai.com" },
+  { name: "Midjourney", category: "Image Generation AI", description: "High-quality AI image generation via Discord", url: "https://midjourney.com" },
+  { name: "DALL·E", category: "Image Generation AI", description: "OpenAI's system that creates realistic images from text", url: "https://openai.com/dall-e" },
+  { name: "Claude", category: "Chatbots", description: "Next-generation AI assistant by Anthropic", url: "https://claude.ai" },
+  { name: "Gemini", category: "Chatbots", description: "Google's most capable and general AI model", url: "https://gemini.google.com" },
+  { name: "Canva AI", category: "Design AI", description: "Magic Studio tools for effortless design creation", url: "https://www.canva.com" },
+  { name: "Grammarly", category: "Writing AI", description: "AI-powered writing assistant and grammar checker", url: "https://www.grammarly.com" },
+  { name: "Notion AI", category: "Productivity AI", description: "AI integrated directly into your Notion workspace", url: "https://www.notion.so" },
+  { name: "Jasper AI", category: "Writing AI", description: "Enterprise AI platform for content creation", url: "https://www.jasper.ai" },
+  { name: "Copy.ai", category: "Writing AI", description: "AI platform for faster marketing copy and content", url: "https://www.copy.ai" },
+  { name: "Writesonic", category: "Writing AI", description: "AI writer for blogs, ads, and product descriptions", url: "https://writesonic.com" },
+  { name: "Rytr", category: "Writing AI", description: "Affordable AI writing assistant for content creators", url: "https://rytr.me" },
+  { name: "Runway ML", category: "Video AI", description: "Next-generation creative tools for video generation", url: "https://runwayml.com" },
+  { name: "Pictory", category: "Video AI", description: "Automatically create short, highly-sharable branded videos", url: "https://pictory.ai" },
+  { name: "Synthesia", category: "Video AI", description: "Create professional videos with AI avatars", url: "https://www.synthesia.io" },
+  { name: "Leonardo AI", category: "Image Generation AI", description: "Generative AI platform for creators and studios", url: "https://leonardo.ai" },
+  { name: "Descript", category: "Audio AI", description: "AI-powered video and podcast editing tool", url: "https://www.descript.com" },
+  { name: "Murf AI", category: "Audio AI", description: "Versatile AI voice generator and text-to-speech", url: "https://murf.ai" },
+  { name: "Luma AI", category: "Video AI", description: "High-quality 3D and video generation from text", url: "https://lumalabs.ai" },
+  { name: "Durable AI", category: "Automation AI", description: "AI website builder that creates a site in 30 seconds", url: "https://durable.co" },
+  { name: "Tome AI", category: "Productivity AI", description: "AI-powered storytelling and presentation tool", url: "https://tome.app" },
+  { name: "Beautiful AI", category: "Design AI", description: "Presentation software that designs itself", url: "https://www.beautiful.ai" },
+  { name: "Gamma AI", category: "Design AI", description: "Create presentations, docs, and sites with AI", url: "https://gamma.app" },
+  { name: "Otter AI", category: "Productivity AI", description: "AI meeting assistant for transcription and notes", url: "https://otter.ai" },
+  { name: "ElevenLabs", category: "Audio AI", description: "Most realistic AI speech and voice cloning", url: "https://elevenlabs.io" },
+  { name: "Replit AI", category: "Coding AI", description: "AI-powered coding environment and assistant", url: "https://replit.com" },
+  { name: "Cursor AI", category: "Coding AI", description: "The AI-first code editor for faster development", url: "https://cursor.sh" },
+  { name: "Tabnine", category: "Coding AI", description: "AI assistant for software developers", url: "https://www.tabnine.com" },
+  { name: "Codeium", category: "Coding AI", description: "Free AI-powered code acceleration toolkit", url: "https://codeium.com" },
+  { name: "Phind", category: "Coding AI", description: "AI search engine for developers", url: "https://www.phind.com" },
+  { name: "Perplexity AI", category: "Chatbots", description: "AI-powered search engine and answer engine", url: "https://www.perplexity.ai" },
+  { name: "Poe AI", category: "Chatbots", description: "Platform to access multiple AI models easily", url: "https://poe.com" },
+  { name: "Quillbot", category: "Writing AI", description: "AI paraphrasing tool and writing enhancer", url: "https://quillbot.com" },
+  { name: "Wordtune", category: "Writing AI", description: "AI writing companion that helps rephrase sentences", url: "https://www.wordtune.com" },
+  { name: "Looka AI", category: "Design AI", description: "AI-powered logo maker and brand builder", url: "https://looka.com" },
+  { name: "Brandmark", category: "Design AI", description: "Create a unique logo and brand identity with AI", url: "https://brandmark.io" },
+  { name: "Remove.bg", category: "Design AI", description: "Remove image backgrounds automatically with AI", url: "https://www.remove.bg" },
+  { name: "Cleanup Pictures", category: "Design AI", description: "Remove objects, people, or text from images", url: "https://cleanup.pictures" },
+  { name: "Upscale Media", category: "Design AI", description: "Upscale and enhance images with AI", url: "https://www.upscale.media" },
+  { name: "PlayHT", category: "Audio AI", description: "AI voice generator and realistic text-to-speech", url: "https://play.ht" },
+  { name: "Soundraw", category: "Audio AI", description: "AI music generator for content creators", url: "https://soundraw.io" },
+  { name: "Boomy", category: "Audio AI", description: "Create and share generative music instantly", url: "https://boomy.com" },
+  { name: "Kaiber AI", category: "Video AI", description: "AI creative engine for video generation", url: "https://kaiber.ai" },
+  { name: "Opus Clip", category: "Video AI", description: "Turn long videos into short viral clips with AI", url: "https://opus.pro" },
+  { name: "CapCut AI", category: "Video AI", description: "AI-powered video editing features for social media", url: "https://www.capcut.com" },
+  { name: "Fireflies AI", category: "Productivity AI", description: "AI meeting assistant that records and transcribes", url: "https://fireflies.ai" },
+  { name: "Taskade AI", category: "Productivity AI", description: "AI-powered productivity and collaboration platform", url: "https://taskade.com" },
+  { name: "Zapier AI", category: "Automation AI", description: "AI-powered automation for your workflows", url: "https://zapier.com" },
+  { name: "Make AI", category: "Automation AI", description: "Visual automation platform with AI capabilities", url: "https://www.make.com" },
+  { name: "Browse AI", category: "Automation AI", description: "Train a robot to scrape and monitor websites", url: "https://www.browse.ai" },
+  { name: "AgentGPT", category: "Automation AI", description: "Configure and deploy autonomous AI agents", url: "https://agentgpt.reworkd.ai" },
+  { name: "AutoGPT", category: "Automation AI", description: "An experimental open-source autonomous AI agent", url: "https://github.com/Significant-Gravitas/AutoGPT" },
+  { name: "Hugging Face", category: "Coding AI", description: "The platform for machine learning and AI models", url: "https://huggingface.co" },
+  { name: "Replicate", category: "Coding AI", description: "Run machine learning models in the cloud", url: "https://replicate.com" },
+  { name: "Stability AI", category: "Image Generation AI", description: "Open-source generative AI company", url: "https://stability.ai" },
+  { name: "DreamStudio", category: "Image Generation AI", description: "Official interface for Stable Diffusion models", url: "https://dreamstudio.ai" },
+  { name: "Krea AI", category: "Image Generation AI", description: "Real-time generative AI for creative professionals", url: "https://krea.ai" },
+  { name: "Ideogram AI", category: "Image Generation AI", description: "AI that excels at generating text within images", url: "https://ideogram.ai" },
+  { name: "Pixlr AI", category: "Design AI", description: "AI-powered photo editor and design tools", url: "https://pixlr.com" },
+  { name: "Hotpot AI", category: "Design AI", description: "AI tools for graphics, pictures, and writing", url: "https://hotpot.ai" },
+  { name: "DeepL", category: "Writing AI", description: "World's most accurate AI translator", url: "https://www.deepl.com" },
+  { name: "Character AI", category: "Chatbots", description: "Chat with AI-powered fictional characters", url: "https://character.ai" },
+  { name: "Janitor AI", category: "Chatbots", description: "Platform for roleplay and character interaction", url: "https://janitorai.com" },
+  { name: "NovelAI", category: "Writing AI", description: "AI-assisted storytelling and text generation", url: "https://novelai.net" },
+  { name: "Sudowrite", category: "Writing AI", description: "The AI writing partner for fiction authors", url: "https://www.sudowrite.com" },
+  { name: "Stockimg AI", category: "Design AI", description: "AI-generated stock images, logos, and posters", url: "https://stockimg.ai" },
+  { name: "Artbreeder", category: "Image Generation AI", description: "Collaborative AI tool for creating unique art", url: "https://www.artbreeder.com" },
+  { name: "NightCafe", category: "Image Generation AI", description: "AI art generator with multiple creation methods", url: "https://nightcafe.studio" },
+  { name: "DeepAI", category: "Image Generation AI", description: "AI tools for naturally creative people", url: "https://deepai.org" },
+  { name: "PromptBase", category: "Marketing AI", description: "Marketplace for high-quality AI prompts", url: "https://promptbase.com" },
+  { name: "PromptHero", category: "Marketing AI", description: "Search engine for AI prompts and images", url: "https://prompthero.com" },
+  { name: "AI Dungeon", category: "Chatbots", description: "Infinite AI-generated text adventure game", url: "https://aidungeon.io" },
+  { name: "Voiceflow", category: "Automation AI", description: "Build and deploy AI agents for any channel", url: "https://www.voiceflow.com" },
+  { name: "FlowGPT", category: "Marketing AI", description: "Community platform for sharing AI prompts", url: "https://flowgpt.com" },
+  { name: "PromptPerfect", category: "Marketing AI", description: "Optimize your prompts for better AI results", url: "https://promptperfect.jina.ai" },
+  { name: "AIPRM", category: "Marketing AI", description: "Curated prompt templates for ChatGPT", url: "https://www.aiprm.com" },
+  { name: "Superhuman AI", category: "Productivity AI", description: "The fastest email experience, now with AI", url: "https://www.superhuman.com" },
+  { name: "Compose AI", category: "Writing AI", description: "AI extension that automates your writing", url: "https://www.compose.ai" },
+  { name: "Anyword", category: "Marketing AI", description: "AI copywriter that predicts performance", url: "https://anyword.com" },
+  { name: "Ocoya", category: "Marketing AI", description: "AI platform for social media content creation", url: "https://www.ocoya.com" },
+  { name: "Predis AI", category: "Marketing AI", description: "AI social media post generator and scheduler", url: "https://predis.ai" },
+  { name: "Taplio AI", category: "Marketing AI", description: "AI-powered tool for LinkedIn growth", url: "https://taplio.com" },
+  { name: "AdCreative AI", category: "Marketing AI", description: "Generate high-converting ad creatives with AI", url: "https://www.adcreative.ai" },
+  { name: "HeyGen", category: "Video AI", description: "AI video generation for business and marketing", url: "https://www.heygen.com" },
+  { name: "InVideo", category: "Video AI", description: "AI-powered online video editor and creator", url: "https://invideo.io" },
+  { name: "Fliki", category: "Video AI", description: "Turn text into videos with AI voices", url: "https://fliki.ai" },
+  { name: "Krisp", category: "Audio AI", description: "AI noise cancellation for online meetings", url: "https://krisp.ai" },
+  { name: "Scribe", category: "Automation AI", description: "AI tool that documents your processes instantly", url: "https://getscribe.ai" },
+  { name: "Mem", category: "Productivity AI", description: "AI-powered workspace for your notes and thoughts", url: "https://mem.ai" },
+  { name: "Rewind", category: "Productivity AI", description: "The search engine for your life", url: "https://www.rewind.ai" },
+  { name: "Glean", category: "Productivity AI", description: "Enterprise search and knowledge management", url: "https://www.glean.com" },
+  { name: "Gong", category: "Marketing AI", description: "Revenue intelligence platform powered by AI", url: "https://www.gong.io" },
+  { name: "Chorus", category: "Marketing AI", description: "Conversation intelligence for sales teams", url: "https://www.chorus.ai" },
+  { name: "Lavender", category: "Marketing AI", description: "AI email assistant for sales professionals", url: "https://www.lavender.ai" },
+  { name: "Regie.ai", category: "Marketing AI", description: "AI content platform for modern sales teams", url: "https://www.regie.ai" },
+  { name: "6sense", category: "Marketing AI", description: "AI-driven account-based marketing platform", url: "https://6sense.com" },
+  { name: "Demandbase", category: "Marketing AI", description: "B2B go-to-market platform with AI", url: "https://www.demandbase.com" },
+  { name: "Drift", category: "Marketing AI", description: "AI-powered conversational marketing platform", url: "https://www.drift.com" },
+  { name: "Intercom", category: "Marketing AI", description: "AI-powered customer service platform", url: "https://www.intercom.com" },
+  { name: "Zendesk", category: "Marketing AI", description: "AI-enhanced customer support software", url: "https://www.zendesk.com" },
+  { name: "Salesforce Einstein", category: "Automation AI", description: "AI built into the world's #1 CRM", url: "https://www.salesforce.com/products/einstein/overview/" },
+  { name: "Microsoft Copilot", category: "Productivity AI", description: "Your everyday AI companion by Microsoft", url: "https://www.microsoft.com/en-us/microsoft-copilot" },
+  { name: "Adobe Firefly", category: "Design AI", description: "Generative AI for creative expression", url: "https://www.adobe.com/sensei/generative-ai/firefly.html" },
+  { name: "Framer AI", category: "Design AI", description: "Design and publish websites with AI", url: "https://www.framer.com/ai/" },
+  { name: "Wix ADI", category: "Design AI", description: "Artificial Design Intelligence for websites", url: "https://www.wix.com" },
+  { name: "10Web", category: "Automation AI", description: "AI-powered WordPress platform and builder", url: "https://10web.io" },
+  { name: "Suno AI", category: "Audio AI", description: "Generate full songs with vocals and instrumentation", url: "https://suno.com" },
+  { name: "Udio", category: "Audio AI", description: "AI music creation platform for high-fidelity tracks", url: "https://udio.com" },
+  { name: "Veed.io", category: "Video AI", description: "AI-powered online video editor for social media", url: "https://www.veed.io" },
+  { name: "Sora", category: "Video AI", description: "OpenAI's text-to-video model for realistic scenes", url: "https://openai.com/sora" },
+  { name: "Pika Labs", category: "Video AI", description: "Idea-to-video platform for creative animation", url: "https://pika.art" },
+  { name: "Relume", category: "Design AI", description: "AI website builder and sitemap generator", url: "https://www.relume.io" },
+  { name: "Galileo AI", category: "Design AI", description: "Generative AI for interface design and UI/UX", url: "https://www.usegalileo.ai" },
+  { name: "Uizard", category: "Design AI", description: "AI-powered design tool for apps and websites", url: "https://uizard.io" },
+  { name: "Visily", category: "Design AI", description: "AI-powered wireframing and prototyping tool", url: "https://www.visily.ai" },
+  { name: "Magician", category: "Design AI", description: "AI plugin for Figma to generate icons and copy", url: "https://magician.design" },
+  { name: "Dora AI", category: "Design AI", description: "AI-powered 3D website builder and animation", url: "https://www.dora.run" },
+  { name: "Spline AI", category: "Design AI", description: "Generate 3D objects and scenes with text prompts", url: "https://spline.design/ai" },
+  { name: "Mintlify", category: "Coding AI", description: "AI-powered documentation for software teams", url: "https://mintlify.com" },
+  { name: "Mutable.ai", category: "Coding AI", description: "AI-accelerated software development platform", url: "https://mutable.ai" },
+  { name: "Sourcegraph Cody", category: "Coding AI", description: "AI coding assistant that understands your codebase", url: "https://about.sourcegraph.com/cody" },
+  { name: "Amazon CodeWhisperer", category: "Coding AI", description: "AI coding companion by AWS", url: "https://aws.amazon.com/codewhisperer/" },
+  { name: "Blackbox AI", category: "Coding AI", description: "AI code search and autocomplete for developers", url: "https://www.blackbox.ai" },
+  { name: "Anyscale", category: "Coding AI", description: "Platform to build and scale AI applications", url: "https://www.anyscale.com" },
+  { name: "LangChain", category: "Coding AI", description: "Framework for building LLM-powered applications", url: "https://www.langchain.com" },
+  { name: "Pinecone", category: "Data AI", description: "Vector database for high-performance AI apps", url: "https://www.pinecone.io" },
+  { name: "Weights & Biases", category: "Data AI", description: "Developer tools for machine learning workflows", url: "https://wandb.ai" },
+  { name: "Scale AI", category: "Data AI", description: "Data infrastructure for AI development", url: "https://scale.com" },
+  { name: "Labelbox", category: "Data AI", description: "Data labeling and management platform for AI", url: "https://labelbox.com" },
+  { name: "Snorkel AI", category: "Data AI", description: "Data-centric AI platform for enterprise models", url: "https://snorkel.ai" },
+  { name: "DataRobot", category: "Data AI", description: "Enterprise AI platform for predictive modeling", url: "https://www.datarobot.com" },
+  { name: "H2O.ai", category: "Data AI", description: "Open-source AI and machine learning platform", url: "https://h2o.ai" },
+  { name: "C3 AI", category: "Automation AI", description: "Enterprise AI software for digital transformation", url: "https://c3.ai" },
+  { name: "Abacus.ai", category: "Automation AI", description: "AI platform for real-time machine learning", url: "https://abacus.ai" },
+  { name: "Harvey AI", category: "Automation AI", description: "AI-powered legal research and analysis", url: "https://www.harvey.ai" },
+  { name: "Ironclad AI", category: "Automation AI", description: "AI-powered contract lifecycle management", url: "https://ironcladapp.com" },
+  { name: "Luminance", category: "Automation AI", description: "AI for legal document review and analysis", url: "https://www.luminance.com" },
+  { name: "Casetext CoCounsel", category: "Automation AI", description: "AI legal assistant for research and drafting", url: "https://casetext.com/cocounsel" },
+  { name: "Viz.ai", category: "Automation AI", description: "AI-powered medical imaging and care coordination", url: "https://www.viz.ai" },
+  { name: "Paige AI", category: "Automation AI", description: "AI-powered pathology and cancer diagnostics", url: "https://paige.ai" },
+  { name: "PathAI", category: "Automation AI", description: "AI-powered pathology for drug development", url: "https://www.pathai.com" },
+  { name: "Tempus", category: "Data AI", description: "AI-powered precision medicine and data analysis", url: "https://www.tempus.com" },
+  { name: "Insilico Medicine", category: "Automation AI", description: "AI-powered drug discovery and development", url: "https://insilico.com" },
+  { name: "Exscientia", category: "Automation AI", description: "AI-driven drug discovery and design", url: "https://www.exscientia.ai" },
+  { name: "Recursion", category: "Automation AI", description: "AI-powered drug discovery and biology", url: "https://www.recursion.com" },
+  { name: "BenevolentAI", category: "Automation AI", description: "AI-powered drug discovery and clinical trials", url: "https://www.benevolent.com" },
+  { name: "AlphaFold", category: "Research AI", description: "AI system that predicts protein structures", url: "https://alphafold.google" },
+  { name: "Inflection AI", category: "Chatbots", description: "Personal AI companion (Pi) for conversation", url: "https://pi.ai" },
+  { name: "Mistral AI", category: "Chatbots", description: "High-performance open-weight AI models", url: "https://mistral.ai" },
+  { name: "Cohere", category: "Chatbots", description: "Enterprise AI platform for language processing", url: "https://cohere.com" },
+  { name: "Groq", category: "Coding AI", description: "LPU Inference Engine for ultra-fast AI", url: "https://groq.com" },
+  { name: "Together AI", category: "Coding AI", description: "Cloud platform for building and running AI", url: "https://www.together.ai" },
+  { name: "Fireworks AI", category: "Coding AI", description: "Fast and efficient AI model inference", url: "https://fireworks.ai" },
+  { name: "Elicit", category: "Research AI", description: "AI research assistant for literature review", url: "https://elicit.com" },
+  { name: "Consensus", category: "Research AI", description: "AI search engine for scientific research", url: "https://consensus.app" },
+  { name: "Scite.ai", category: "Research AI", description: "AI tool for discovering and evaluating research", url: "https://scite.ai" }
 ];
