@@ -1,80 +1,64 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Sparkles, ExternalLink, ArrowRight, Star } from 'lucide-react';
-import { motion } from 'motion/react';
-import type { AITool } from '../data';
+import { ArrowRight, ExternalLink, Sparkles } from 'lucide-react';
+import { Link } from '../router';
+import type { EnrichedAITool } from '../seoData';
 
-interface ToolCardProps {
-  tool: AITool;
-  key?: string | number;
-}
+export function ToolCard({
+  tool,
+  headingLevel = 'h3',
+}: {
+  tool: EnrichedAITool;
+  headingLevel?: 'h2' | 'h3';
+}) {
+  const HeadingTag = headingLevel;
 
-export default function ToolCard({ tool }: ToolCardProps) {
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      className="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-500/5"
-    >
-      <div className="mb-4 flex items-start justify-between">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-50 text-indigo-600 transition-colors group-hover:bg-indigo-50 overflow-hidden">
-          {tool.logo ? (
-            <img src={tool.logo} alt={tool.name} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
-          ) : (
-            <Sparkles size={24} />
-          )}
-        </div>
-        <div className="flex flex-col items-end gap-2">
-          <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">
-            {tool.category}
-          </span>
-          {tool.pricing && (
-            <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-              tool.pricing === 'Free' ? 'bg-emerald-100 text-emerald-700' : 
-              tool.pricing === 'Freemium' ? 'bg-indigo-100 text-indigo-700' : 
-              'bg-amber-100 text-amber-700'
-            }`}>
-              {tool.pricing}
-            </span>
-          )}
-        </div>
+    <article className="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-500/5">
+      <div className="mb-4 flex items-start justify-between gap-2">
+        <Link
+          to={tool.path}
+          aria-label={`View ${tool.name} details`}
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-indigo-600 transition-colors group-hover:bg-indigo-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600"
+        >
+          <Sparkles size={24} aria-hidden="true" />
+        </Link>
+        <Link
+          to={tool.categoryPath}
+          className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600 transition-colors hover:bg-indigo-50 hover:text-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600"
+        >
+          {tool.category}
+        </Link>
       </div>
 
-      <Link to={`/tool/${tool.slug}`} className="block">
-        <h3 className="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+      <HeadingTag className="text-lg font-bold text-slate-900 transition-colors group-hover:text-indigo-600">
+        <Link
+          to={tool.path}
+          className="rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600"
+        >
           {tool.name}
-        </h3>
-      </Link>
-      
-      <p className="mt-2 flex-grow text-sm leading-relaxed text-slate-500 line-clamp-2">
+        </Link>
+      </HeadingTag>
+
+      <p className="mt-2 flex-grow text-sm leading-relaxed text-slate-600">
         {tool.description}
       </p>
 
-      {tool.rating && (
-        <div className="mt-3 flex items-center gap-1 text-amber-500">
-          <Star size={14} fill="currentColor" />
-          <span className="text-xs font-bold">{tool.rating}</span>
-        </div>
-      )}
-
-      <div className="mt-6 flex items-center justify-between">
+      <div className="mt-6 flex items-center justify-between gap-3 border-t border-slate-100 pt-4">
         <a
           href={tool.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-700"
+          className="inline-flex items-center gap-1.5 rounded text-sm font-semibold text-indigo-600 hover:text-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600"
         >
-          Visit Tool <ExternalLink size={14} />
+          Visit Tool <ExternalLink size={14} aria-hidden="true" />
         </a>
         <Link
-          to={`/tool/${tool.slug}`}
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-400 transition-all hover:bg-indigo-600 hover:text-white"
+          to={tool.path}
+          aria-label={`Read more about ${tool.name}`}
+          className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 transition-all hover:bg-indigo-600 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600"
         >
-          <ArrowRight size={16} />
+          Details <ArrowRight size={14} aria-hidden="true" />
         </Link>
       </div>
-    </motion.div>
+    </article>
   );
 }
